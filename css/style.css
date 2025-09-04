@@ -34,7 +34,7 @@ header .container{
 }
 
 header .logo a{
-	font-size: 30px;
+	font-size: 50px;
 	text-decoration: none;
 	color:#ffffff;
 	font-weight: 700;
@@ -715,6 +715,7 @@ header .ham-burger.active span:nth-child(2){
 .contact{
 	padding:80px 0px;
 	background-color: #222222;
+	display: flex;
 }
 
 .contact .content{
@@ -726,6 +727,7 @@ header .ham-burger.active span:nth-child(2){
 	flex:0 0 50%;
 	max-width: 50%;
 	padding: 15px;
+	
 }
 
 .contact .content .form input,
@@ -737,7 +739,7 @@ header .ham-burger.active span:nth-child(2){
  background-color: transparent;
  border:1px solid #ffffff;
  font-family: 'Open-sans',sans-serif;
- color:#ffffff;
+ color:#000000;
 }
 .contact .content .form input:focus,
 .contact .content .form textarea:focus{
@@ -755,14 +757,17 @@ header .ham-burger.active span:nth-child(2){
 	border:none;
 	outline: none;
 	box-shadow: none;
-	height: 45px;
-	padding:0px 50px;
+	height: 100px;
+	padding:0px 150px;
 	border:1px solid transparent;
 	background-color: #c11325;
 	color:#ffffff;
-	font-size: 15px;
+	font-size: 30px;
 	transition: all .5s ease;
 	cursor: pointer;
+
+	
+	
 }
 .contact .content .form button:hover{
 	background-color:transparent;
@@ -771,13 +776,13 @@ header .ham-burger.active span:nth-child(2){
 }
 
 .contact .content .text h2{
-	font-size: 30px;
+	font-size: 50px;
     font-weight: 500;
     color: #c11325;
     padding: 0px 0px 20px;
 }
 .contact .content .text p{
-    font-size: 15px;
+    font-size:20px;
     line-height: 20px;
     color: #ffffff;
     margin: 0;
