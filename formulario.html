@@ -1,42 +1,77 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Registro - Damm Fitness</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Favicon de gimnasio (brazo de músculo) -->
-  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/1048/1048953.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Formulario DAMM Fitness</title>
+
   <style>
+    /* 🔲 Fondo con imagen y desenfoque */
+    .background {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('form-background.jpg');
+      background-size: cover;
+      background-position: center;
+      z-index: -2;
+    }
+
+    .background::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(8px); /* Difuminado */
+      background-color: rgba(0, 0, 0, 0.2); /* Oscurecimiento sutil */
+      z-index: -1;
+    }
+
     body {
-      background: #f2f2f2;
+      background: transparent;
       font-family: 'Oswald', sans-serif;
       margin: 0;
       padding: 0;
     }
+
+    /* --- Ajustes para centrar y balancear --- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
     .form-container {
-      max-width: 400px;
+      max-width: 500px;
       margin: 60px auto;
       background: #fff;
       border-radius: 12px;
       box-shadow: 0 0 20px rgba(100,0,0,0.08);
       padding: 32px 24px;
       border: 2px solid #d32f2f;
+      position: relative;
+      z-index: 1;
     }
+
     h2 {
       text-align: center;
       color: #d32f2f;
       margin-bottom: 24px;
       font-weight: 700;
     }
+
     .form-group {
       margin-bottom: 18px;
     }
+
     label {
       display: block;
       margin-bottom: 6px;
       color: #444;
       font-weight: 500;
+      padding: 0;
     }
+
     input, select, textarea {
       width: 100%;
       padding: 8px 10px;
@@ -45,35 +80,48 @@
       background: #f7f7f7;
       font-size: 15px;
       transition: border-color 0.2s;
+      margin: 0;
     }
+
     input:focus, select:focus, textarea:focus {
       border-color: #d32f2f;
       outline: none;
     }
+
     .objetivo-select {
-      width: 100%;
-      padding: 8px 10px;
-      border-radius: 5px;
-      border: 1px solid #bdbdbd;
-      background: #f7f7f7;
-      font-size: 15px;
       margin-bottom: 0;
     }
+
+    /* Ajustes para el grupo sexo */
     .form-group.sex-group {
       display: flex;
-      justify-content: space-between;
       align-items: center;
       margin-bottom: 18px;
-    }
-    .sex-options {
-      display: flex;
       gap: 16px;
     }
+
+    .form-group.sex-group > label {
+      min-width: 70px; /* ancho fijo para "Sexo:" */
+      font-weight: 500;
+      color: #444;
+      margin-bottom: 0;
+    }
+
+    .sex-options {
+      display: flex;
+      gap: 20px;
+      flex: 1;
+    }
+
     .sex-options label {
       margin-bottom: 0;
       font-weight: 400;
       color: #555;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
+
     .submit-btn {
       width: 100%;
       background: #d32f2f;
@@ -87,9 +135,11 @@
       transition: background 0.2s;
       margin-top: 10px;
     }
+
     .submit-btn:hover {
       background: #b71c1c;
     }
+
     #mensaje-exito {
       display: none;
       position: fixed;
@@ -99,10 +149,10 @@
       height: 100vh;
       background: rgba(0, 0, 0, 0.35);
       z-index: 9999;
-      display: flex;
       align-items: center;
       justify-content: center;
     }
+
     #mensaje-exito > div {
       background: #fff;
       border-radius: 10px;
@@ -114,11 +164,13 @@
       opacity: 1;
       transition: opacity 0.8s;
     }
+
     #mensaje-exito span {
       font-size: 1.2em;
       color: #d32f2f;
       font-weight: bold;
     }
+
     #mensaje-exito div {
       margin-top: 12px;
       color: #444;
@@ -126,62 +178,87 @@
   </style>
 </head>
 <body>
+
+  <!-- 🔲 Fondo difuminado -->
+  <div class="background"></div>
+
   <div class="form-container">
     <h2>Formulario DAMM Fitness</h2>
-    <form>
+    <form id="form">
       <div class="form-group">
         <label for="nombre">Nombre y Apellido</label>
-        <input type="text" id="nombre" name="nombre" required>
+        <input type="text" id="nombre" name="nombre" required />
       </div>
       <div class="form-group">
         <label for="edad">Edad</label>
-        <input type="number" id="edad" name="edad" min="10" max="99" required>
+        <input type="number" id="edad" name="edad" min="10" max="99" required />
       </div>
       <div class="form-group">
         <label for="telefono">Teléfono</label>
-        <input type="tel" id="telefono" name="telefono" pattern="[0-9]{7,15}" required>
+        <input type="tel" id="telefono" name="telefono" pattern="[0-9]{7,15}" required />
       </div>
       <div class="form-group">
         <label for="correo">Correo Electrónico</label>
-        <input type="email" id="correo" name="correo" required>
+        <input type="email" id="correo" name="correo" required />
       </div>
       <div class="form-group">
         <label for="objetivo">Objetivo en mente</label>
         <select id="objetivo" name="objetivo" class="objetivo-select" required>
           <option value="">Selecciona una opción</option>
-          <option value="masa">Aumentar masa muscular</option>
-          <option value="reduccion">Reducción de peso</option>
-          <option value="resistencia">Mejorar resistencia</option>
-          <option value="salud">Mejorar salud general</option>
-          <option value="otro">Otro</option>
+          <option value="Aumentar-masa-muscular">Aumentar masa muscular</option>
+          <option value="Reduccion-de-peso">Reducción de peso</option>
+          <option value="Mejorar-resistencia">Mejorar resistencia</option>
+          <option value="Salud">Mejorar salud general</option>
+          <option value="Otro">Otro</option>
         </select>
       </div>
       <div class="form-group">
         <label for="altura">Altura (cm)</label>
-        <input type="number" id="altura" name="altura" min="100" max="250" required>
+        <input type="number" id="altura" name="altura" min="100" max="250" required />
       </div>
       <div class="form-group sex-group">
         <label>Sexo:</label>
         <div class="sex-options">
-          <label><input type="radio" name="sexo" value="femenino" required> Femenino</label>
-          <label><input type="radio" name="sexo" value="masculino"> Masculino</label>
-          <label><input type="radio" name="sexo" value="no_especificar"> No especificar</label>
+          <label><input type="radio" name="sexo" value="Femenino" required /> Femenino</label>
+          <label><input type="radio" name="sexo" value="Masculino" /> Masculino</label>
+          <label><input type="radio" name="sexo" value="No_especificar" /> No especificar</label>
         </div>
       </div>
       <div class="form-group">
         <label for="introduccion">Presentación personal (máx. 200 caracteres)</label>
-        <textarea id="introduccion" name="introduccion" maxlength="200" rows="3" style="background:#fff; border:1px solid #ccc; border-radius:4px; padding:8px; resize:none;" placeholder="Escribe una breve introducción sobre ti..."></textarea>
+        <textarea id="introduccion" name="introduccion" maxlength="200" rows="3" placeholder="Escribe una breve introducción sobre ti..."></textarea>
       </div>
 
+      <button type="submit" class="submit-btn">Enviar</button>
+    </form>
+  </div>
 
-
-
-      <button type="submit" class="submit-btn">Enviar formulario</button>
-
-
-      
-    
+  <div id="mensaje-exito">
+    <div>
+      <span>¡Formulario enviado con éxito!</span>
+      <div>Gracias por completar el formulario. Nos pondremos en contacto pronto.</div>
     </div>
   </div>
+
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    emailjs.init('lOVaZbBIFMwtNlzfI');
+
+    document.getElementById('form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      emailjs.sendForm('service_nz3hgta', 'template_3brtatp', this)
+        .then(function() {
+          document.getElementById('form').reset();
+          document.getElementById('mensaje-exito').style.display = 'flex';
+          setTimeout(() => {
+            document.getElementById('mensaje-exito').style.display = 'none';
+          }, 4000);
+        }, function(error) {
+          alert('Error al enviar el formulario: ' + JSON.stringify(error));
+        });
+    });
+  </script>
 </body>
 </html>
