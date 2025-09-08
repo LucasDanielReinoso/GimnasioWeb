@@ -170,6 +170,37 @@
     }
 
     /* Responsive */
+    @media (max-width: 768px) {
+      .form-container {
+        max-width: 90%;
+        padding: 35px 25px;
+        gap: 20px;
+        margin: 30px 10px;
+      }
+      h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      input, select, textarea {
+        font-size: 15px;
+        padding: 9px 11px;
+      }
+      .submit-btn {
+        font-size: 17px;
+        padding: 13px 0;
+      }
+      /* Opciones sexo y lesiones centradas y mejor adaptadas */
+      .sex-options, .lesiones-options {
+        gap: 15px;
+        justify-content: center;
+      }
+      .sex-options label, .lesiones-options label {
+        flex: 1 1 45%;
+        justify-content: flex-start;
+        min-width: 120px;
+      }
+    }
+
     @media (max-width: 480px) {
       .form-container {
         padding: 30px 20px;
@@ -178,8 +209,8 @@
         margin: 30px 10px;
       }
       h2 {
-        font-size: 24px;
-        margin-bottom: 20px;
+        font-size: 22px;
+        margin-bottom: 16px;
       }
       input, select, textarea {
         font-size: 14px;
@@ -189,15 +220,33 @@
         font-size: 16px;
         padding: 12px 0;
       }
-      /* Centramos las opciones de sexo y lesiones en móvil */
       .sex-options, .lesiones-options {
         gap: 12px;
         justify-content: center;
       }
-      /* Para etiquetas dentro de sex-options y lesiones-options que tengan mucho ancho, que no se corten */
       .sex-options label, .lesiones-options label {
         flex: 1 1 100%;
         justify-content: center;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .form-container {
+        max-width: 600px;
+        padding: 50px 45px;
+        gap: 30px;
+        margin: 50px 20px;
+      }
+      h2 {
+        font-size: 32px;
+      }
+      input, select, textarea {
+        font-size: 17px;
+        padding: 12px 15px;
+      }
+      .submit-btn {
+        font-size: 20px;
+        padding: 16px 0;
       }
     }
   </style>
@@ -309,13 +358,11 @@
     setTimeout(() => {
       mensajeExito.style.opacity = '0';
 
-      // Opcional: ocultar el mensaje después de redireccionar
       setTimeout(() => {
         mensajeExito.style.display = 'none';
         mensajeExito.style.opacity = '1';
       }, 800);
 
-      // 🔁 Redirige a pagos.html luego de 1.5 segundos
       window.location.href = "pagos.html";
     }, 1500);
   });
