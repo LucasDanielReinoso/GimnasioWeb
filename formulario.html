@@ -346,48 +346,17 @@
       <div id="mensaje-exito-texto">Recibimos tu formulario correctamente.</div>
     </div>
   </div>
-<script>
-  const form = document.getElementById('form');
-  const mensajeExito = document.getElementById('mensaje-exito');
-  const detalleLesionesContainer = document.getElementById('detalle-lesiones-container');
-  const detalleLesiones = document.getElementById('detalle_lesiones');
-
-  function toggleDetalleLesiones(mostrar) {
-    if (mostrar) {
-      detalleLesionesContainer.style.display = 'block';
-      detalleLesiones.setAttribute('required', 'required');
-    } else {
-      detalleLesionesContainer.style.display = 'none';
-      detalleLesiones.removeAttribute('required');
-      detalleLesiones.value = '';
-    }
-  }
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-
-    form.reset();
-    toggleDetalleLesiones(false);
-
-    mensajeExito.style.display = 'flex';
-
-    setTimeout(() => {
-      mensajeExito.style.opacity = '0';
-
-      setTimeout(() => {
-        mensajeExito.style.display = 'none';
-        mensajeExito.style.opacity = '1';
-      }, 800);
-
-      window.location.href = "pagos.html";
-    }, 1500);
-  });
-</script>
-
 </body>
+
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init('lOVaZbBIFMwtNlzfI');
+  })();
+</script>
+<script src="email-form.js"></script>
+
+
+</html>
+
 </html>
