@@ -87,32 +87,55 @@
       outline: none;
       background: #fff;
     }
-    .sex-options, .lesiones-options {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: flex-start;
+
+    /* Ajuste específico para sexo y lesiones */
+    .form-group.sex-group,
+    .form-group.lesiones-group {
+      margin-left: 0;
+      padding-left: 0;
+      text-align: left;
+      display: block;
     }
+
+    /* Contenedores de opciones en columna y alineados a la izquierda */
+    .sex-options,
+    .lesiones-options {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;  /* alineado a la izquierda */
+      gap: 10px;
+      padding-left: 25px; /* separación izquierda 25px */
+    }
+
+    /* Etiquetas que contienen radio + texto, alineados horizontalmente y centrados verticalmente */
     .sex-options label,
     .lesiones-options label {
       display: flex;
       align-items: center;
       gap: 8px;
-      font-weight: 400;
-      color: #555;
       cursor: pointer;
       user-select: none;
+      color: #555;
+      font-weight: 400;
+      font-size: 16px;
     }
-    .form-group.sex-group, .form-group.lesiones-group {
-      margin-bottom: 18px;
+
+    /* Radio centrado verticalmente y sin margen extra */
+    .sex-options label input[type="radio"],
+    .lesiones-options label input[type="radio"] {
+      margin: 0;
+      flex-shrink: 0;
+      /* Opcional para tamaño consistente: */
+      width: 18px;
+      height: 18px;
     }
+
     .form-group.sex-group > label,
     .form-group.lesiones-group > label {
       font-weight: 500;
       color: #444;
-      margin-bottom: 8px;
-      display: block;
     }
+
     #detalle-lesiones-container {
       margin-top: 12px;
     }
@@ -189,15 +212,14 @@
         font-size: 17px;
         padding: 13px 0;
       }
-      /* Opciones sexo y lesiones centradas y mejor adaptadas */
+      /* Opciones sexo y lesiones adaptadas */
       .sex-options, .lesiones-options {
         gap: 15px;
-        justify-content: center;
+        padding-left: 25px;
       }
       .sex-options label, .lesiones-options label {
-        flex: 1 1 45%;
         justify-content: flex-start;
-        min-width: 120px;
+        min-width: auto;
       }
     }
 
@@ -222,11 +244,10 @@
       }
       .sex-options, .lesiones-options {
         gap: 12px;
-        justify-content: center;
+        padding-left: 25px;
       }
       .sex-options label, .lesiones-options label {
-        flex: 1 1 100%;
-        justify-content: center;
+        display: flex;
       }
     }
 
