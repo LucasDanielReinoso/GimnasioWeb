@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Formulario DAMM Fitness</title>
-
+  <link rel="icon" type="image/png" href="https://img.icons8.com/color/48/gym-bench.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* 🔲 Fondo con imagen y desenfoque */
     .background {
       position: fixed;
       top: 0; left: 0;
@@ -17,129 +17,122 @@
       background-position: center;
       z-index: -2;
     }
-
     .background::after {
       content: '';
       position: absolute;
       top: 0; left: 0;
       width: 100%;
       height: 100%;
-      backdrop-filter: blur(8px); /* Difuminado */
-      background-color: rgba(0, 0, 0, 0.2); /* Oscurecimiento sutil */
+      backdrop-filter: blur(8px);
+      background-color: rgba(0, 0, 0, 0.2);
       z-index: -1;
     }
-
-    body {
-      background: transparent;
-      font-family: 'Oswald', sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
-    /* --- Ajustes para centrar y balancear --- */
     *, *::before, *::after {
       box-sizing: border-box;
     }
-
+    body, html {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      font-family: 'Oswald', sans-serif;
+      background: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
     .form-container {
-      max-width: 500px;
-      margin: 60px auto;
       background: #fff;
       border-radius: 12px;
       box-shadow: 0 0 20px rgba(100,0,0,0.08);
-      padding: 32px 24px;
+      padding: 40px 35px;
       border: 2px solid #d32f2f;
-      position: relative;
+      max-width: 500px;
+      width: 100%;
       z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      margin: 40px 15px;
     }
-
     h2 {
       text-align: center;
       color: #d32f2f;
-      margin-bottom: 24px;
+      margin: 0 0 24px 0;
       font-weight: 700;
+      font-size: 28px;
+      flex-shrink: 0;
     }
-
     .form-group {
+      display: flex;
+      flex-direction: column;
       margin-bottom: 18px;
     }
-
     label {
-      display: block;
       margin-bottom: 6px;
       color: #444;
       font-weight: 500;
-      padding: 0;
     }
-
     input, select, textarea {
       width: 100%;
-      padding: 8px 10px;
+      padding: 10px 12px;
       border: 1px solid #bdbdbd;
-      border-radius: 5px;
+      border-radius: 8px;
       background: #f7f7f7;
-      font-size: 15px;
+      font-size: 16px;
       transition: border-color 0.2s;
-      margin: 0;
+      resize: vertical;
     }
-
     input:focus, select:focus, textarea:focus {
       border-color: #d32f2f;
       outline: none;
+      background: #fff;
     }
-
-    .objetivo-select {
-      margin-bottom: 0;
+    .sex-options, .lesiones-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
     }
-
-    /* Ajustes para el grupo sexo */
-    .form-group.sex-group {
+    .sex-options label,
+    .lesiones-options label {
       display: flex;
       align-items: center;
-      margin-bottom: 18px;
-      gap: 16px;
-    }
-
-    .form-group.sex-group > label {
-      min-width: 70px; /* ancho fijo para "Sexo:" */
-      font-weight: 500;
-      color: #444;
-      margin-bottom: 0;
-    }
-
-    .sex-options {
-      display: flex;
-      gap: 20px;
-      flex: 1;
-    }
-
-    .sex-options label {
-      margin-bottom: 0;
+      gap: 8px;
       font-weight: 400;
       color: #555;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      cursor: pointer;
+      user-select: none;
     }
-
+    .form-group.sex-group, .form-group.lesiones-group {
+      margin-bottom: 18px;
+    }
+    .form-group.sex-group > label,
+    .form-group.lesiones-group > label {
+      font-weight: 500;
+      color: #444;
+      margin-bottom: 8px;
+      display: block;
+    }
+    #detalle-lesiones-container {
+      margin-top: 12px;
+    }
     .submit-btn {
       width: 100%;
       background: #d32f2f;
       color: #fff;
       border: none;
-      border-radius: 5px;
-      padding: 12px 0;
-      font-size: 16px;
+      border-radius: 8px;
+      padding: 14px 0;
+      font-size: 18px;
       font-weight: 600;
       cursor: pointer;
-      transition: background 0.2s;
-      margin-top: 10px;
+      transition: background 0.3s ease;
+      user-select: none;
     }
-
-    .submit-btn:hover {
+    .submit-btn:hover,
+    .submit-btn:focus {
       background: #b71c1c;
+      outline: none;
     }
-
     #mensaje-exito {
       display: none;
       position: fixed;
@@ -151,8 +144,8 @@
       z-index: 9999;
       align-items: center;
       justify-content: center;
+      font-family: 'Oswald', sans-serif;
     }
-
     #mensaje-exito > div {
       background: #fff;
       border-radius: 10px;
@@ -164,30 +157,49 @@
       opacity: 1;
       transition: opacity 0.8s;
     }
-
     #mensaje-exito span {
-      font-size: 1.2em;
+      font-size: 1.3em;
       color: #d32f2f;
       font-weight: bold;
+      display: block;
     }
-
     #mensaje-exito div {
       margin-top: 12px;
       color: #444;
     }
+    @media (max-width: 480px) {
+      .form-container {
+        padding: 30px 20px;
+        max-width: 100%;
+        gap: 20px;
+        margin: 30px 10px;
+      }
+      h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      input, select, textarea {
+        font-size: 14px;
+        padding: 8px 10px;
+      }
+      .submit-btn {
+        font-size: 16px;
+        padding: 12px 0;
+      }
+      .sex-options, .lesiones-options {
+        gap: 12px;
+      }
+    }
   </style>
 </head>
 <body>
-
-  <!-- 🔲 Fondo difuminado -->
-  <div class="background"></div>
-
-  <div class="form-container">
+  <div class="background" aria-hidden="true"></div>
+  <main class="form-container" role="main" aria-label="Formulario de registro de usuarios">
     <h2>Formulario DAMM Fitness</h2>
-    <form id="form">
+    <form id="form" novalidate>
       <div class="form-group">
         <label for="nombre">Nombre y Apellido</label>
-        <input type="text" id="nombre" name="nombre" required />
+        <input type="text" id="nombre" name="nombre" required autocomplete="name" />
       </div>
       <div class="form-group">
         <label for="edad">Edad</label>
@@ -195,15 +207,15 @@
       </div>
       <div class="form-group">
         <label for="telefono">Teléfono</label>
-        <input type="tel" id="telefono" name="telefono" pattern="[0-9]{7,15}" required />
+        <input type="tel" id="telefono" name="telefono" pattern="[0-9]{7,15}" required placeholder="Solo números, 7 a 15 dígitos" />
       </div>
       <div class="form-group">
         <label for="correo">Correo Electrónico</label>
-        <input type="email" id="correo" name="correo" required />
+        <input type="email" id="correo" name="correo" required autocomplete="email" />
       </div>
       <div class="form-group">
         <label for="objetivo">Objetivo en mente</label>
-        <select id="objetivo" name="objetivo" class="objetivo-select" required>
+        <select id="objetivo" name="objetivo" required>
           <option value="">Selecciona una opción</option>
           <option value="Aumentar-masa-muscular">Aumentar masa muscular</option>
           <option value="Reduccion-de-peso">Reducción de peso</option>
@@ -218,47 +230,86 @@
       </div>
       <div class="form-group sex-group">
         <label>Sexo:</label>
-        <div class="sex-options">
+        <div class="sex-options" role="radiogroup" aria-required="true">
           <label><input type="radio" name="sexo" value="Femenino" required /> Femenino</label>
           <label><input type="radio" name="sexo" value="Masculino" /> Masculino</label>
           <label><input type="radio" name="sexo" value="No_especificar" /> No especificar</label>
         </div>
       </div>
+      <div class="form-group lesiones-group">
+        <label>Lesiones:</label>
+        <div class="lesiones-options" role="radiogroup" aria-required="true">
+          <label>
+            <input type="radio" name="lesiones" value="Si" required onchange="toggleDetalleLesiones(true)" />
+            Sí (especificar abajo)
+          </label>
+          <label>
+            <input type="radio" name="lesiones" value="No" onchange="toggleDetalleLesiones(false)" />
+            No
+          </label>
+        </div>
+        <div id="detalle-lesiones-container" style="display: none;">
+          <label for="detalle_lesiones">Detalle de las lesiones</label>
+          <textarea id="detalle_lesiones" name="detalle_lesiones" rows="3" maxlength="200" placeholder="Especificá tus lesiones aquí..."></textarea>
+        </div>
+      </div>
       <div class="form-group">
-        <label for="introduccion">Presentación personal (máx. 200 caracteres)</label>
+        <label for="introduccion">Presentación personal, incluya lesiones (máx. 200 caracteres)</label>
         <textarea id="introduccion" name="introduccion" maxlength="200" rows="3" placeholder="Escribe una breve introducción sobre ti..."></textarea>
       </div>
-
-      <button type="submit" class="submit-btn">Enviar</button>
+      <button type="submit" class="submit-btn" aria-label="Enviar formulario">Enviar</button>
     </form>
-  </div>
-
-  <div id="mensaje-exito">
+  </main>
+  <div id="mensaje-exito" role="alertdialog" aria-modal="true" aria-labelledby="mensaje-exito-titulo" aria-describedby="mensaje-exito-texto">
     <div>
-      <span>¡Formulario enviado con éxito!</span>
-      <div>Gracias por completar el formulario. Nos pondremos en contacto pronto.</div>
+      <span id="mensaje-exito-titulo">¡Gracias por registrarte!</span>
+      <div id="mensaje-exito-texto">Recibimos tu formulario correctamente.</div>
     </div>
   </div>
+<script>
+  const form = document.getElementById('form');
+  const mensajeExito = document.getElementById('mensaje-exito');
+  const detalleLesionesContainer = document.getElementById('detalle-lesiones-container');
+  const detalleLesiones = document.getElementById('detalle_lesiones');
 
-  <!-- EmailJS SDK -->
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-  <script>
-    emailjs.init('lOVaZbBIFMwtNlzfI');
+  function toggleDetalleLesiones(mostrar) {
+    if (mostrar) {
+      detalleLesionesContainer.style.display = 'block';
+      detalleLesiones.setAttribute('required', 'required');
+    } else {
+      detalleLesionesContainer.style.display = 'none';
+      detalleLesiones.removeAttribute('required');
+      detalleLesiones.value = '';
+    }
+  }
 
-    document.getElementById('form').addEventListener('submit', function(event) {
-      event.preventDefault();
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-      emailjs.sendForm('service_nz3hgta', 'template_3brtatp', this)
-        .then(function() {
-          document.getElementById('form').reset();
-          document.getElementById('mensaje-exito').style.display = 'flex';
-          setTimeout(() => {
-            document.getElementById('mensaje-exito').style.display = 'none';
-          }, 4000);
-        }, function(error) {
-          alert('Error al enviar el formulario: ' + JSON.stringify(error));
-        });
-    });
-  </script>
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    form.reset();
+    toggleDetalleLesiones(false);
+
+    mensajeExito.style.display = 'flex';
+
+    setTimeout(() => {
+      mensajeExito.style.opacity = '0';
+
+      // Opcional: ocultar el mensaje después de redireccionar
+      setTimeout(() => {
+        mensajeExito.style.display = 'none';
+        mensajeExito.style.opacity = '1';
+      }, 800);
+
+      // 🔁 Redirige a pagos.html luego de 1.5 segundos
+      window.location.href = "pagos.html";
+    }, 1500);
+  });
+</script>
+
 </body>
 </html>

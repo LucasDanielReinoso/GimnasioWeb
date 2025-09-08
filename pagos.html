@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Seleccionar método de pago</title>
+  <link rel="icon" type="image/png" href="https://img.icons8.com/color/48/gym-bench.png" />
+  
+  <!-- Fuente -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet" />
+  
+  <style>
+    /* Fondo con desenfoque */
+    .background {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('form-background.jpg'); /* Asegúrate que exista */
+      background-size: cover;
+      background-position: center;
+      z-index: -2;
+    }
+
+    .background::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(8px);
+      background-color: rgba(0, 0, 0, 0.2);
+      z-index: -1;
+    }
+
+    /* Reset y body centrado con flex */
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: 'Oswald', sans-serif;
+      background: transparent;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    main.form-container {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(100, 0, 0, 0.08);
+      border: 2px solid #d32f2f;
+      padding: 40px 35px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      z-index: 1;
+    }
+
+    h2 {
+      color: #d32f2f;
+      margin: 0;
+      font-weight: 700;
+      font-size: 28px;
+    }
+
+    /* Botones de pago */
+    .btn-pago {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      background: #d32f2f;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 16px 15px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s ease;
+      gap: 14px;
+      user-select: none;
+      box-sizing: border-box;
+    }
+
+    .btn-pago:hover,
+    .btn-pago:focus {
+      background: #b71c1c;
+      outline: none;
+    }
+
+    .btn-internacional {
+      background: #003087;
+    }
+
+    .btn-internacional:hover,
+    .btn-internacional:focus {
+      background: #001f5b;
+      outline: none;
+    }
+
+    /* Iconos y banderas */
+    .btn-icon, .btn-flag {
+      height: 28px;
+      width: 28px;
+      flex-shrink: 0;
+      border-radius: 4px;
+      background: #fff;
+      padding: 2px;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .btn-icon svg {
+      width: 28px;
+      height: 28px;
+      display: block;
+    }
+
+    /* Texto dentro de botones */
+    .btn-text {
+      flex-grow: 1;
+      text-align: center;
+    }
+
+    /* Modal de éxito */
+    #mensaje-exito {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Oswald', sans-serif;
+    }
+
+    #mensaje-exito > div {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(100, 0, 0, 0.15);
+      padding: 32px 24px;
+      border: 2px solid #d32f2f;
+      text-align: center;
+      max-width: 400px;
+      opacity: 1;
+      transition: opacity 0.8s;
+    }
+
+    #mensaje-exito span {
+      font-size: 1.2em;
+      color: #d32f2f;
+      font-weight: bold;
+    }
+
+    #mensaje-exito div div {
+      margin-top: 12px;
+      color: #444;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      main.form-container {
+        padding: 30px 20px;
+        gap: 25px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+
+      .btn-pago {
+        font-size: 16px;
+        padding: 14px 12px;
+        gap: 10px;
+      }
+
+      .btn-icon, .btn-flag {
+        height: 24px;
+        width: 24px;
+        padding: 1px;
+      }
+
+      .btn-icon svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fondo -->
+  <div class="background" aria-hidden="true"></div>
+
+  <main class="form-container" role="main" aria-label="Seleccionar método de pago">
+    <h2>Seleccioná tu método de pago</h2>
+
+    <!-- Botón Mercado Pago -->
+    <a href="#" class="btn-pago" role="button" tabindex="0"
+       onclick="redirigir('https://www.mercadopago.com.ar/link_de_pago'); return false;"
+       aria-label="Pagar con Mercado Pago, Argentina">
+      <span class="btn-text">Argentina</span>
+      <div class="btn-flag" aria-hidden="true">
+        <img width="24" height="24" src="https://img.icons8.com/fluency/48/argentina-circular.png" alt="Bandera de Argentina" />
+      </div>
+      <div style="background-color: white; width: 32px; height: 32px; display: flex; align-items: center; border-radius: 4px; justify-content: center; border: 1px solid #ccc;" aria-hidden="true">
+        <img width="32" height="32" src="https://img.icons8.com/ultraviolet/40/sell.png" alt="Logo Mercado Pago" />
+      </div>
+    </a>
+
+    <!-- Botón PayPal -->
+    <a href="#" class="btn-pago btn-internacional" role="button" tabindex="0"
+       onclick="redirigir('https://www.paypal.me/tuusuario/30'); return false;"
+       aria-label="Pagar con PayPal, Internacional">
+      <span class="btn-text">Internacional</span>
+      <div class="btn-flag" aria-hidden="true">
+        <img width="30" height="30" src="https://img.icons8.com/emoji/48/globe-with-meridians-emoji.png" alt="Globo terráqueo" />
+      </div>
+      <div class="btn-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 48 48" >
+          <path fill="#0d62ab" d="M18.7,13.767l0.005,0.002C18.809,13.326,19.187,13,19.66,13h13.472c0.017,0,0.034-0.007,0.051-0.006	C32.896,8.215,28.887,6,25.35,6H11.878c-0.474,0-0.852,0.335-0.955,0.777l-0.005-0.002L5.029,33.813l0.013,0.001	c-0.014,0.064-0.039,0.125-0.039,0.194c0,0.553,0.447,0.991,1,0.991h8.071L18.7,13.767z"></path>
+          <path fill="#199be2" d="M33.183,12.994c0.053,0.876-0.005,1.829-0.229,2.882c-1.281,5.995-5.912,9.115-11.635,9.115	c0,0-3.47,0-4.313,0c-0.521,0-0.767,0.306-0.88,0.54l-1.74,8.049l-0.305,1.429h-0.006l-1.263,5.796l0.013,0.001	c-0.014,0.064-0.039,0.125-0.039,0.194c0,0.553,0.447,1,1,1h7.333l0.013-0.01c0.472-0.007,0.847-0.344,0.945-0.788l0.018-0.015	l1.812-8.416c0,0,0.126-0.803,0.97-0.803s4.178,0,4.178,0c5.723,0,10.401-3.106,11.683-9.102	C42.18,16.106,37.358,13.019,33.183,12.994z"></path>
+          <path fill="#006fc4" d="M19.66,13c-0.474,0-0.852,0.326-0.955,0.769L18.7,13.767l-2.575,11.765	c0.113-0.234,0.359-0.54,0.88-0.54c0.844,0,4.235,0,4.235,0c5.723,0,10.432-3.12,11.713-9.115c0.225-1.053,0.282-2.006,0.229-2.882	C33.166,12.993,33.148,13,33.132,13H19.66z"></path>
+        </svg>
+      </div>
+    </a>
+  </main>
+
+  <!-- Modal de éxito -->
+  <div id="mensaje-exito" role="alert" aria-live="assertive" aria-atomic="true">
+    <div>
+      <span>¡Redirigiendo al método de pago!</span>
+      <div>Por favor esperá un momento...</div>
+    </div>
+  </div>
+
+  <script>
+    function redirigir(url) {
+      const mensaje = document.getElementById('mensaje-exito');
+      mensaje.style.display = 'flex';
+
+      setTimeout(() => {
+        window.open(url, '_blank');
+        mensaje.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+
+</body>
+</html>
