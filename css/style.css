@@ -791,7 +791,7 @@ header .ham-burger.active span:nth-child(2){
 	border:1px solid transparent;
 	background-color: #c11325;
 	color:#ffffff;
-	font-size: 40px;
+	font-size: 25px;
 	transition: all .5s ease;
 	cursor: pointer;
 	margin-top: 10px;
