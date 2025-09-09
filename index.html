@@ -13,8 +13,7 @@
     .wow:first-child {
       visibility: hidden;
     }
-  </style>
-  
+  </style> 
 </head>
 <body>
  
@@ -39,9 +38,9 @@
 </div>
  	 </div>
  </header>
- <!-- End Header  -->
+<!-- End Header  -->
 
-  <!-- Start Home -->
+<!-- Start Home -->
   <section class="home wow flash" id="home">
   	 <div class="container">
   	 	  <h1 class="wow slideInLeft" data-wow-delay="1s">Es hora de <span>gimnasio</span>. ¡Vamos!</h1>
@@ -63,10 +62,10 @@
   	  <!-- go down -->
 
   </section>
-  <!-- End Home -->
+<!-- End Home -->
 
 
- <!-- Start About -->
+<!-- Start About -->
   <section class="about" id="about">
   	  <div class="container">
   	  	  <div class="content">
@@ -103,7 +102,7 @@
   	  	  </div>
   	  </div>
   </section>
- <!-- End About -->
+<!-- End About -->
 
 <!-- Start Classes -->
 <section class="classes" id="classes">
@@ -166,8 +165,6 @@
  </section>
 <!-- End Start Today -->
 
-
-
 <!-- Start Gallery -->
   <section class="gallery" id="gallery">
   	 <h2>Galería de Entrenamiento</h2>
@@ -188,7 +185,7 @@
   </section>
 <!-- End Gallery -->
 
- <!-- Start Price -->
+<!-- Start Price -->
   <section class="price-package" id="price">
   	 <div class="container">
   	 	  <h2>Elige tu Paquete</h2>
@@ -207,8 +204,7 @@
   	 	  	  	  	   	  <p>Mes a Mes</p>
   	 	  	  	  	   	  <p>Sin Restricciones de Horario</p>
   	 	  	  	  	   	  <p>Gimnasio y Cardio</p>
-  	 	  	  	  	   	  <p>Vestidores con Servicio</p>
-  	 	  	  	  	   	  
+  	 	  	  	  	   	  <p>Vestidores con Servicio</p>	 	  	  	  	   	  
   	 	  	  	  	   </div>
   	 	  	  	  </div>
   	 	  	  </div>
@@ -226,8 +222,7 @@
   	 	  	  	  	   	  <p>Mes a Mes</p>
   	 	  	  	  	   	  <p>Sin Restricciones de Horario</p>
   	 	  	  	  	   	  <p>Gimnasio y Cardio</p>
-  	 	  	  	  	   	  <p>Vestidores con Servicio</p>
-  	 	  	  	  	   	 
+  	 	  	  	  	   	  <p>Vestidores con Servicio</p> 	  	  	  	   	 
   	 	  	  	  	   </div>
   	 	  	  	  </div>
   	 	  	  </div>
@@ -245,8 +240,7 @@
   	 	  	  	  	   	  <p>Mes a Mes</p>
   	 	  	  	  	   	  <p>Sin Restricciones de Horario</p>
   	 	  	  	  	   	  <p>Gimnasio y Cardio</p>
-  	 	  	  	  	   	  <p>Vestidores con Servicio</p>
-  	 	  	  	  	
+  	 	  	  	  	   	  <p>Vestidores con Servicio</p> 	
   	 	  	  	  	   </div>
   	 	  	  	  </div>
   	 	  	  </div>
@@ -278,7 +272,6 @@
                        <a href=""><span class="fa fa-instagram"></span></a>
                        <a href=""><span class="fa fa-youtube-play"></span></a>
                   </div>
-
                   <div class="copy">
                       PowerBy &copy; Makavelic. All Rights Reserved.
                   </div>
@@ -288,11 +281,10 @@
   </section>
  <!-- End Contact -->
 
-
-
  <!-- jquery -->
 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <script>
 	$(document).ready(function(){
 
@@ -315,23 +307,20 @@
          if(this.hash !== ""){
 
               event.preventDefault();
-
               var hash=this.hash; 
-
               $('html,body').animate({
                 scrollTop:$(hash).offset().top
               },800 , function(){
                  window.location.hash=hash;
               });
-
               // add active class in navigation
               $(".nav ul li a").removeClass("active")
               $(this).addClass("active")
          }
       })
 })
-
 </script>
+
 <script src="js/wow.min.js"></script>
 <script>
     wow = new WOW(
@@ -341,7 +330,8 @@
       }
     );
     wow.init();
-  </script>
+</script>
+
 <script>
   document.getElementById('redirectForm').addEventListener('submit', function(e) {
     e.preventDefault();
