@@ -782,6 +782,32 @@ header .ham-burger.active span:nth-child(2){
 	border-color:#c11325;
 }
 
+.form button{
+	border:none;
+	outline: none;
+	box-shadow: none;
+	height: 100px;
+	padding: 0 10px;
+	border:1px solid transparent;
+	background-color: #c11325;
+	color:#ffffff;
+	font-size: 40px;
+	transition: all .5s ease;
+	cursor: pointer;
+	margin-top: 10px;
+}
+
+.form button:hover{
+	background-color:transparent;
+	color:#c11325; 
+	border-color:#c11325;
+}
+
+
+
+
+
+
 .contact .content .text h2{
 	font-size: 36px;
 	font-weight: 700;

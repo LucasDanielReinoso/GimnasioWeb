@@ -9,3 +9,6 @@ Cosas por hacer:
 
 - Revisar métodos de pago. En proceso.
 
+- Sincronizar el tema de las lesiones. 
+
+- Poner botón de formulario más arriba. 
